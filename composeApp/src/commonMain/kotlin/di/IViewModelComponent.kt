@@ -1,19 +1,19 @@
 package di
 
+import ui.viewmodels.AdvancedSearchResultsViewModel
 import ui.viewmodels.AdvancedSearchViewModel
 import ui.viewmodels.MainPortalViewModel
-import ui.viewmodels.RequestFeatureViewModel
 import ui.viewmodels.SavedSearchesViewModel
 import ui.viewmodels.SpecialReportsViewModel
 
 interface IViewModelComponent {
-    val mainPortalViewModel: MainPortalViewModel
+    @ApplicationScope val mainPortalViewModel: MainPortalViewModel
 
-    val advancedSearchViewModel: AdvancedSearchViewModel
+    @ApplicationScope val advancedSearchViewModel: AdvancedSearchViewModel
 
-    val requestFeatureViewModel: RequestFeatureViewModel
+    @ApplicationScope val savedSearchesViewModel: SavedSearchesViewModel
 
-    val savedSearchesViewModel: SavedSearchesViewModel
+    @ApplicationScope val specialReportsViewModel: SpecialReportsViewModel
 
-    val specialReportsViewModel: SpecialReportsViewModel
+    @ApplicationScope val advancedSearchResultsViewModel: AdvancedSearchResultsViewModel
 }

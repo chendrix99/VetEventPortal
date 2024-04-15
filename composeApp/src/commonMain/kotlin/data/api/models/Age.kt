@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 data class Age(
     val qualifier: String? = null,
     val min: String? = null,
+    val max: String? = null,
     val unit: String? = null
 )

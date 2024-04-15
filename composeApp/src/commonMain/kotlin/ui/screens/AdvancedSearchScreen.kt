@@ -39,10 +39,15 @@ import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import kotlinx.coroutines.launch
 import moe.tlaster.precompose.navigation.Navigator
+import moe.tlaster.precompose.viewmodel.viewModelScope
+import ui.screens.composables.CircularLoadingScreen
 import ui.screens.composables.GeneralSearchBar
 import ui.screens.composables.GoBackTextTopAppBar
 import ui.screens.composables.SimpleTextFAB
+import ui.screens.composables.TextChip
+import ui.viewmodels.AdvancedSearchResultsViewModel
 import ui.viewmodels.AdvancedSearchViewModel
 import ui.viewmodels.AnimalGender
 import ui.viewmodels.MatchTerms
@@ -50,17 +55,20 @@ import ui.viewmodels.MatchTerms
 //----------------------------------------------------------------------------------------
 @Composable
 fun AdvancedSearchScreen(
-    navigator: Navigator,
+    onNav: () -> Unit,
     viewModel: AdvancedSearchViewModel,
+    resultsViewModel: AdvancedSearchResultsViewModel,
     modifier: Modifier = Modifier
 ) {
     val state by viewModel.uiState.collectAsState()
+    var showResults by remember { mutableStateOf(false) }
     var openFilterDialog by remember { mutableStateOf(false) }
     var contentList: List<@Composable () -> Unit> = emptyList()
+    var loading by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = { AdvancedSearchTopBar(
-            onBack = {navigator.goBack()}
+            onBack = onNav
         ) },
         floatingActionButton = {
             SimpleTextFAB(
@@ -115,7 +123,14 @@ fun AdvancedSearchScreen(
                 onValueChange = {
                     viewModel.updateSearchString(it)
                 },
-                onSearch = {},
+                onSearch = {
+                    viewModel.viewModelScope.launch {
+                        loading = true
+                        viewModel.advancedSearch(state)
+                        loading = false
+                        showResults = true
+                    }
+                },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -132,7 +147,7 @@ fun AdvancedSearchScreen(
                         .fillMaxWidth()
                         .padding(4.dp),
                 ) {
-                    Text("Search By Animal:")
+                    Text("Search by Animal:")
                     Switch(
                         checked = state.searchByAnimal,
                         onCheckedChange = {
@@ -186,6 +201,17 @@ fun AdvancedSearchScreen(
             }
         }
     }
+
+    if (loading) {
+        CircularLoadingScreen()
+    }
+
+    if (showResults) {
+        AdvancedSearchResultsScreen(
+            navBack = { showResults = false },
+            viewModel = resultsViewModel
+        )
+    }
 }
 
 //----------------------------------------------------------------------------------------
@@ -198,29 +224,6 @@ fun AdvancedSearchTopBar(
         title = "Advanced Search",
         onBackClick = onBack
     )
-}
-
-//----------------------------------------------------------------------------------------
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun TextChip(
-    text: String,
-    checked: Boolean,
-    onClicked: () -> Unit
-) {
-    Chip(
-        onClick = onClicked,
-        leadingIcon = { if (checked) {
-            Icon(Icons.Filled.Check, contentDescription = null)
-        } },
-        colors = when (checked) {
-            true -> ChipDefaults.chipColors(backgroundColor = MaterialTheme.colors.secondary)
-            false -> ChipDefaults.chipColors()
-        },
-        modifier = Modifier.padding(top = 4.dp)
-    ) {
-        Text(text)
-    }
 }
 
 //----------------------------------------------------------------------------------------
@@ -354,7 +357,7 @@ fun SearchByDrugCard(
                 onValueChange = {
                     viewModel.updateActiveIngredients(it)
                 },
-                label = {Text("Active Ingredients:")},
+                label = {Text("Active Ingredient:")},
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(4.dp),
@@ -417,7 +420,9 @@ fun FilterDialog(
         properties = DialogProperties()
     ) {
         Card {
-            Column {
+            Column(
+                modifier = Modifier.padding(12.dp)
+            ) {
                 Column (
                     modifier = Modifier.fillMaxWidth()
                 ) {

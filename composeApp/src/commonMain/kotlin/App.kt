@@ -1,27 +1,32 @@
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import di.ApplicationComponent
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.rememberNavigator
-import ui.screens.AdvancedSearchResultsScreen
+import ui.AppTheme
 import ui.screens.AdvancedSearchScreen
 import ui.screens.MainPortalScreen
 import ui.screens.RequestFeatureScreen
 import ui.screens.SavedSearchesScreen
-import ui.screens.SearchResultInfoScreen
 import ui.screens.SpecialReportsScreen
 
 expect fun getAppComp(): ApplicationComponent
+val appComp: ApplicationComponent = getAppComp()
+
+object Disclaimer {
+    var disclaimerShown: Boolean = false
+}
 
 @Composable
 fun App() {
     PreComposeApp {
         val navigator = rememberNavigator()
 
-        val appComp: ApplicationComponent = getAppComp()
-
-        MaterialTheme {
+        AppTheme {
             NavHost(
                 navigator = navigator,
                 initialRoute = "/home"
@@ -34,13 +39,9 @@ fun App() {
                 }
                 scene("/advanced") {
                     AdvancedSearchScreen(
-                        navigator,
-                        appComp.advancedSearchViewModel
-                    )
-                }
-                scene("/advancedresults") {
-                    AdvancedSearchResultsScreen(
-                        navBack = {navigator.goBack()}
+                        onNav = {navigator.goBack()},
+                        appComp.advancedSearchViewModel,
+                        appComp.advancedSearchResultsViewModel
                     )
                 }
                 scene("/saved") {
@@ -58,13 +59,6 @@ fun App() {
                 scene("/feature") {
                     RequestFeatureScreen(
                         onNav = {navigator.goBack()},
-                        viewModel = appComp.requestFeatureViewModel
-                    )
-                }
-                // TODO Correct way to to this? Need to pass anything?
-                scene("/searchinfo") {
-                    SearchResultInfoScreen(
-                        onNav = {navigator.goBack()}
                     )
                 }
             }

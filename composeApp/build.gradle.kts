@@ -45,6 +45,8 @@ kotlin {
             //Ktor
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
+
+            implementation("androidx.startup:startup-runtime:1.1.1")
         }
         iosMain.dependencies {
             //SqlDelight
@@ -147,4 +149,13 @@ compose.desktop {
 
 task("testClasses") {
 
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.example.vetfdaportal")
+            srcDirs.setFrom("src/commonMain/sqldelight")
+        }
+    }
 }

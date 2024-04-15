@@ -4,6 +4,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import di.ApiRepositoryComponent
 import di.ApplicationComponent
+import di.DatabaseRepositoryComponent
 import di.create
 
 fun main() = application {
@@ -20,6 +21,7 @@ fun AppDesktopPreview() {
 
 actual fun getAppComp(): ApplicationComponent {
     return ApplicationComponent::class.create(
-        ApiRepositoryComponent::class.create()
+        ApiRepositoryComponent::class.create(),
+        DatabaseRepositoryComponent::class.create()
     )
 }

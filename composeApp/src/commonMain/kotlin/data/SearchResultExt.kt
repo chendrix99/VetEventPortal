@@ -1,6 +1,16 @@
 package data
 
+import com.example.vetfdaportal.Result
+import data.api.models.ActiveIngredient
+import data.api.models.Age
+import data.api.models.Animal
+import data.api.models.Breed
+import data.api.models.Drug
 import data.api.models.SearchResultApi
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
 
 fun SearchResultApi.toDataModel() = SearchResultData(
     animal = animal,
@@ -44,4 +54,26 @@ fun SearchResultData.toApiModel() = SearchResultApi(
     duration = duration,
     secondary_reporter = secondary_reporter,
     time_between_exposure_and_onset = time_between_exposure_and_onset
+)
+
+fun Result.toDataModel() = SearchResultData(
+    report_id = report_id,
+    animal = Animal(
+        age = Age(
+            min = animal_age.toString(),
+            unit = animal_age_unit
+        ),
+        species = animal_species,
+        breed = Breed(
+            breed_component = JsonPrimitive(animal_breed_component)
+        ),
+    ),
+    drug = listOf(
+      Drug(
+          active_ingredients = drug_active_ingredients?.split(",")?.map {
+              ActiveIngredient(name = it)
+          }
+      )
+    ),
+    serious_ae = serious_adverse_event
 )

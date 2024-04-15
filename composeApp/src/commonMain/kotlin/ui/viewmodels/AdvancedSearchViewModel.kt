@@ -1,16 +1,30 @@
 package ui.viewmodels
 
+import data.SearchResultData
+import data.api.ApiRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import me.tatarka.inject.annotations.Inject
+import moe.tlaster.precompose.stateholder.SavedStateHolder
 import moe.tlaster.precompose.viewmodel.ViewModel
 
 @Inject
-class AdvancedSearchViewModel() : ViewModel() {
+class AdvancedSearchViewModel(
+    private val repository: ApiRepository
+) : ViewModel() {
     private val _uiState = MutableStateFlow(AdvancedSearchState())
     val uiState: StateFlow<AdvancedSearchState> = _uiState.asStateFlow()
+
+    suspend fun advancedSearch(state: AdvancedSearchState) {
+        val results: List<SearchResultData> = repository.makeAdvancedSearch(state)
+        _uiState.update { currentState ->
+            currentState.copy(
+                searchResults = results
+            )
+        }
+    }
 
     fun updateSearchString(searchString: String) {
         _uiState.update { currentState ->
@@ -168,8 +182,10 @@ data class AdvancedSearchState(
 
     val yearStart: Int? = null,
     val yearEnd: Int? = null,
-    val seriousAdverseEvent: Boolean = false,
-    val treatedForAdverseEvent: Boolean = false
+    val seriousAdverseEvent: Boolean = true,
+    val treatedForAdverseEvent: Boolean = true,
+
+    val searchResults: List<SearchResultData> = emptyList()
 )
 
 enum class MatchTerms(val value: Boolean) {

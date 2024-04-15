@@ -12,6 +12,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 
 //----------------------------------------------------------------------------------------
 @Composable
@@ -26,7 +28,9 @@ fun SimpleTextTopAppBar(
             modifier = modifier.fillMaxWidth()
         ) {
             Text(
-                text = title
+                text = title,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp
             )
         }
     }
@@ -52,7 +56,9 @@ fun GoBackTextTopAppBar(
             modifier = modifier.fillMaxWidth()
         ) {
             Text(
-                text = title
+                text = title,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp
             )
         }
     }

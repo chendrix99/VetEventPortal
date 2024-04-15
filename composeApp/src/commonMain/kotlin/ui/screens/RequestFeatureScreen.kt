@@ -1,33 +1,37 @@
 package ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import ui.screens.composables.GoBackTextTopAppBar
-import ui.screens.composables.SimpleTextFAB
-import ui.viewmodels.RequestFeatureViewModel
+
 
 //----------------------------------------------------------------------------------------
 @Composable
 fun RequestFeatureScreen(
     onNav: () -> Unit,
-    viewModel: RequestFeatureViewModel,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
         topBar = { RequestFeatureTopAppBar(
             onBack = onNav
-        ) },
-        floatingActionButton = {
-            SimpleTextFAB(
-                onClick = {},
-                title = "Send"
-            )
-        }
+        ) }
     ) {
         Column {
-            // FeatureRequest Fields
+            Text(
+                text = "Please send a brief description of the feature that you would like to this email: calebhendrix23@icloud.com",
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center,
+                fontSize = 18.sp,
+                modifier = Modifier.padding(12.dp)
+            )
         }
     }
 }

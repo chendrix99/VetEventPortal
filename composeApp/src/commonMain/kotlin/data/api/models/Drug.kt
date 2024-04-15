@@ -24,4 +24,6 @@ data class Drug (
     val lot_expiration: String? = null,
     val off_label_use: JsonElement? = null,
     val product_ndc: String? = null,
+    val number_of_items_returned: String? = null,
+    val number_of_defective_items: String? = null,
 )

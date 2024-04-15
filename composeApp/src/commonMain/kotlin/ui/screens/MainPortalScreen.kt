@@ -1,5 +1,6 @@
 package ui.screens
 
+import Disclaimer
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,11 +22,18 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import data.SearchResultData
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.viewmodel.viewModelScope
+import ui.screens.composables.CircularLoadingScreen
+import ui.screens.composables.DisclaimerDialog
+import ui.screens.composables.EmptyResultsDialog
 import ui.screens.composables.GeneralSearchBar
 import ui.screens.composables.SearchResultAndSaveButtonCard
 import ui.screens.composables.SimpleTextTopAppBar
@@ -40,6 +48,13 @@ fun MainPortalScreen(
         .fillMaxSize()
 ) {
     val state by viewModel.uiState.collectAsState()
+
+    var resultInfo by remember{ mutableStateOf(false) }
+    var data: SearchResultData by remember { mutableStateOf(SearchResultData()) }
+
+    var loading by remember { mutableStateOf(false) }
+
+    var disclaimer by remember{ mutableStateOf(Disclaimer.disclaimerShown) }
 
     Scaffold(
         topBar = { MainPortalTopAppBar() },
@@ -57,7 +72,10 @@ fun MainPortalScreen(
                 },
                 onSearch = {
                     viewModel.viewModelScope.launch {
-                        viewModel.performSearch(state.searchString)
+                        loading = true
+                        val results = viewModel.performSearch(state.searchString)
+                        viewModel.updateEmptyResults(results.isEmpty())
+                        loading = false
                     }
                 },
                 modifier = Modifier.fillMaxWidth()
@@ -76,11 +94,68 @@ fun MainPortalScreen(
                 items(items = state.searchResults) { item ->
                     SearchResultAndSaveButtonCard(
                         data = item,
-                        onSave = {}
+                        onSave = {
+                            viewModel.viewModelScope.launch {
+                                viewModel.saveResult(
+                                    resultId = item.report_id,
+                                    animalSpecies = item.animal?.species ?: "Unknown",
+                                    animalAge = item.animal?.age?.min?.toDouble() ?: 0.0,
+                                    animalAgeUnit = item.animal?.age?.unit ?: "Unknown",
+                                    animalBreedComponent = item.animal?.breed?.breed_component.toString(),
+                                    drugActiveIngredients = item.drug?.get(0)?.active_ingredients?.map { item -> item.name }?.joinToString(),
+                                    seriousAdverseEvent = item.serious_ae ?: "Unknown"
+                                )
+                            }
+                        },
+                        onMore = {
+                            resultInfo = true
+                            data = item
+                        }
                     )
                 }
             }
         }
+    }
+
+    if (loading) {
+        CircularLoadingScreen()
+    }
+
+    if (state.emptyResults) {
+        EmptyResultsDialog(
+            onDismiss = {
+                viewModel.updateEmptyResults(false)
+            }
+        )
+    }
+
+    if (resultInfo) {
+        SearchResultInfoScreen(
+            onNav = { resultInfo = false },
+            onFabClick = {
+                viewModel.viewModelScope.launch {
+                    viewModel.saveResult(
+                        resultId = data.report_id,
+                        animalSpecies = data.animal?.species ?: "Unknown",
+                        animalAge = data.animal?.age?.min?.toDouble() ?: 0.0,
+                        animalAgeUnit = data.animal?.age?.unit ?: "Unknown",
+                        animalBreedComponent = data.animal?.breed?.breed_component.toString(),
+                        drugActiveIngredients = data.drug?.get(0)?.active_ingredients?.map { item -> item.name }?.joinToString(),
+                        seriousAdverseEvent = data.serious_ae ?: "Unknown"
+                    )
+                }
+            },
+            data = data
+        )
+    }
+
+    if (!disclaimer) {
+        DisclaimerDialog(
+            onDismiss = {
+                Disclaimer.disclaimerShown = true
+                disclaimer = true
+            }
+        )
     }
 }
 
