@@ -46,6 +46,7 @@ import ui.screens.composables.CircularLoadingScreen
 import ui.screens.composables.GeneralSearchBar
 import ui.screens.composables.GoBackTextTopAppBar
 import ui.screens.composables.SimpleTextFAB
+import ui.screens.composables.TextAndSwitch
 import ui.screens.composables.TextChip
 import ui.viewmodels.AdvancedSearchResultsViewModel
 import ui.viewmodels.AdvancedSearchViewModel
@@ -140,21 +141,13 @@ fun AdvancedSearchScreen(
             contentList = emptyList()
 
             contentList = contentList + {
-                Row (
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(4.dp),
-                ) {
-                    Text("Search by Animal:")
-                    Switch(
-                        checked = state.searchByAnimal,
-                        onCheckedChange = {
-                            viewModel.updateSearchByAnimal(it)
-                        }
-                    )
-                }
+                TextAndSwitch(
+                    text = "Search by Animal:",
+                    checked = state.searchByAnimal,
+                    onChange = {
+                        viewModel.updateSearchByAnimal(it)
+                    }
+                )
             }
 
             if (state.searchByAnimal) {
@@ -164,21 +157,13 @@ fun AdvancedSearchScreen(
             }
 
             contentList = contentList + {
-                Row (
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(4.dp),
-                ) {
-                    Text("Search by Drug:")
-                    Switch(
-                        checked = state.searchByDrug,
-                        onCheckedChange = {
-                            viewModel.updateSearchByDrug(it)
-                        }
-                    )
-                }
+                TextAndSwitch(
+                    text = "Search by Drug:",
+                    checked = state.searchByDrug,
+                    onChange = {
+                        viewModel.updateSearchByDrug(it)
+                    }
+                )
             }
 
             if (state.searchByDrug) {
@@ -362,21 +347,13 @@ fun SearchByDrugCard(
                     .fillMaxWidth()
                     .padding(4.dp),
             )
-            Row (
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp),
-            ) {
-                Text("Previous Exposure:")
-                Switch(
-                    checked = state.previousExposure,
-                    onCheckedChange = {
-                        viewModel.updatePreviousExposure(it)
-                    }
-                )
-            }
+            TextAndSwitch(
+                text = "Previous Exposure:",
+                checked = state.previousExposure,
+                onChange = {
+                    viewModel.updatePreviousExposure(it)
+                }
+            )
             TextField(
                 value = state.administrationRoute,
                 onValueChange = {
@@ -387,21 +364,13 @@ fun SearchByDrugCard(
                     .fillMaxWidth()
                     .padding(4.dp),
             )
-            Row (
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp),
-            ) {
-                Text("Used According to Label:")
-                Switch(
-                    checked = state.usedAccordingToLabel,
-                    onCheckedChange = {
-                        viewModel.updateUsedAccordingToLabel(it)
-                    }
-                )
-            }
+            TextAndSwitch(
+                text = "Used According to Label:",
+                checked = state.usedAccordingToLabel,
+                onChange = {
+                    viewModel.updateUsedAccordingToLabel(it)
+                }
+            )
         }
     }
 }
@@ -461,36 +430,20 @@ fun FilterDialog(
                         )
                     }
                 }
-                Row (
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(4.dp),
-                ) {
-                    Text("Serious Adverse Event:")
-                    Switch(
-                        checked = state.seriousAdverseEvent,
-                        onCheckedChange = {
-                            viewModel.updateSeriousAdverseEvent(it)
-                        }
-                    )
-                }
-                Row (
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(4.dp),
-                ) {
-                    Text("Treated for Adverse Event:")
-                    Switch(
-                        checked = state.treatedForAdverseEvent,
-                        onCheckedChange = {
-                            viewModel.updateTreatedForAdverseEvent(it)
-                        }
-                    )
-                }
+                TextAndSwitch(
+                    text = "Serious Adverse Event:",
+                    checked = state.seriousAdverseEvent,
+                    onChange = {
+                        viewModel.updateSeriousAdverseEvent(it)
+                    }
+                )
+                TextAndSwitch(
+                    text = "Treated for Adverse Event:",
+                    checked = state.treatedForAdverseEvent,
+                    onChange = {
+                        viewModel.updateTreatedForAdverseEvent(it)
+                    }
+                )
             }
         }
     }

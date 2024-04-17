@@ -1,16 +1,13 @@
 package data
 
-import com.example.vetfdaportal.Result
+import orgchendrixveteventportal.Result
 import data.api.models.ActiveIngredient
 import data.api.models.Age
 import data.api.models.Animal
 import data.api.models.Breed
 import data.api.models.Drug
 import data.api.models.SearchResultApi
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.buildJsonObject
 
 fun SearchResultApi.toDataModel() = SearchResultData(
     animal = animal,

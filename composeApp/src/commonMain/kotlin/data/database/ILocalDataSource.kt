@@ -1,6 +1,6 @@
 package data.database
 
-import com.example.vetfdaportal.Result
+import orgchendrixveteventportal.Result
 import kotlinx.coroutines.flow.Flow
 
 interface ILocalDataSource {

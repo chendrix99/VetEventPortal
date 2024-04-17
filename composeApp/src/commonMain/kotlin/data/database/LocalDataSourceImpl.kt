@@ -2,8 +2,8 @@ package data.database
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import com.example.vetfdaportal.Database
-import com.example.vetfdaportal.Result
+import org.chendrix.veteventportal.Database
+import orgchendrixveteventportal.Result
 import di.ApplicationScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO

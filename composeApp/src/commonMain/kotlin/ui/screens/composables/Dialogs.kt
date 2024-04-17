@@ -96,12 +96,12 @@ fun EmptyResultsDialog(
 }
 
 //----------------------------------------------------------------------------------------
-internal const val disclaimerAndAttribution = "VetFDA Portal and its creators present data obtained from the openFDA database of reported adverse events associated " +
+internal const val disclaimerAndAttribution = "Vet Event Portal and its creators present data obtained from the openFDA database of reported adverse events associated " +
         "with animal drugs and devices. This data is available for informational purposes only. Do not rely on information obtained from openFDA " +
         "to make decisions regarding medical care. Always speak to a veterinary professional regarding care for your animal and any questions or " +
         "concerns surrounding a drug or device.\n" +
         "\n" +
-        "VetFDA Portal and its creators are not responsible for any clinical decisions made based on the information obtained from this application or their associated costs, " +
+        "Vet Event Portal and its creators are not responsible for any clinical decisions made based on the information obtained from this application or their associated costs, " +
         "nor do we guarantee the accuracy or completeness of the data obtained from openFDA.\n" +
         "\n" +
         "By clicking on the below button labeled \"Accept\" you acknowledge this disclaimer and accept the limitation of liability it describes."

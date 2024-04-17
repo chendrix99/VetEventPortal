@@ -3,7 +3,7 @@ package di
 import app.cash.sqldelight.db.QueryResult
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.db.SqlSchema
-import com.example.vetfdaportal.Database
+import org.chendrix.veteventportal.Database
 import data.database.DatabaseRepository
 import data.database.ILocalDataSource
 import data.database.LocalDataSourceImpl

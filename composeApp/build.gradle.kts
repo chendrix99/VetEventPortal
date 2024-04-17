@@ -28,7 +28,6 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
-            isStatic = true
         }
     }
 
@@ -102,7 +101,7 @@ dependencies {
 }
 
 android {
-    namespace = "org.example.vetfdaportal"
+    namespace = "org.chendrix.veteventportal"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
@@ -110,7 +109,7 @@ android {
     sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
-        applicationId = "org.example.vetfdaportal"
+        applicationId = "org.chendrix.veteventportal"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
@@ -141,7 +140,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "org.example.vetfdaportal"
+            packageName = "org.chendrix.veteventportal"
             packageVersion = "1.0.0"
         }
     }
@@ -154,7 +153,7 @@ task("testClasses") {
 sqldelight {
     databases {
         create("Database") {
-            packageName.set("com.example.vetfdaportal")
+            packageName.set("org.chendrix.veteventportal")
             srcDirs.setFrom("src/commonMain/sqldelight")
         }
     }

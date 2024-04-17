@@ -1,16 +1,23 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
+## App Overview
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+Vet Event Portal is an open source app built using the Kotlin Multiplatform framework targeting
+Android, iOS and Desktop platforms. Vet Event Portal provides an interface for users to search
+for data uploaded to the public openFDA API service. Users can lookup adverse events for different
+animals or drug active ingredients.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+This project used the following packages and libraries:
 
+* Precompose - Navigation and ViewModel
+* Kotlin-inject - Dependency Injection
+* Ktor - Http Client
+* SqlDelight - Offline SQL database
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## In Action
 
-Desktop: ./gradlew :composeApp:run
+![main search android](appImages/android/Screenshot_20240417_111139.png)
+![advanced search android](appImages/android/Screenshot_20240417_111340.png)
+![special report android](appImages/android/Screenshot_20240417_111244.png)
+
+![main search ios](appImages/ios/Simulator%20Screenshot%20-%20iPhone%2015%20-%202024-04-17%20at%2011.37.18.png)
+![advanced search ios](appImages/ios/simulator_screenshot_23F9B9C1-C283-4E68-A018-3AF1BC28E0AA.png)
+![special report ios](appImages/ios/simulator_screenshot_2DE0182F-FCAE-4408-A5D1-3DE0AEAFB38C.png)

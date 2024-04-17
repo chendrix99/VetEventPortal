@@ -165,7 +165,7 @@ fun MainPortalTopAppBar(
     modifier: Modifier = Modifier
 ) {
     SimpleTextTopAppBar(
-        title = "VetFDA Portal",
+        title = "Vet Event Portal",
     )
 }
 
@@ -177,25 +177,25 @@ fun MainPortalBottomAppBar(
 ) {
     BottomNavigation {
         BottomNavigationItem(
-            selected = false, //TODO
+            selected = false,
             onClick = { navigator.navigate("/saved") },
             icon = { Icon(Icons.Default.Star, null) },
             label = { Text(text = "Saved") }
         )
         BottomNavigationItem(
-            selected = false, //TODO
+            selected = false,
             onClick = { navigator.navigate("/advanced") },
             icon = { Icon(Icons.Default.Build, null) },
             label = { Text(text = "Advanced") }
         )
         BottomNavigationItem(
-            selected = false, //TODO
+            selected = false,
             onClick = { navigator.navigate("/special") },
             icon = { Icon(Icons.Default.Info, null) },
             label = { Text(text = "Special") }
         )
         BottomNavigationItem(
-            selected = false, //TODO
+            selected = false,
             onClick = { navigator.navigate("/feature") },
             icon = { Icon(Icons.Default.Create, null) },
             label = { Text(text = "Request Feature") }
