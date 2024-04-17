@@ -15,8 +15,8 @@ This project used the following packages and libraries:
 ## In Action
 
 <img src="appImages/android/Screenshot_20240417_111139.png" width="300" height="500" alt="main search android">
-![advanced search android](appImages/android/Screenshot_20240417_111340.png)
-![special report android](appImages/android/Screenshot_20240417_111244.png)
+<img src="appImages/android/Screenshot_20240417_111340.png" width="300" height="500" alt="advanced search android">
+<img src="appImages/android/Screenshot_20240417_111244.png" width="300" height="500" alt="special report android">
 
 ![main search ios](appImages/ios/Simulator%20Screenshot%20-%20iPhone%2015%20-%202024-04-17%20at%2011.37.18.png)
 ![advanced search ios](appImages/ios/simulator_screenshot_23F9B9C1-C283-4E68-A018-3AF1BC28E0AA.png)
