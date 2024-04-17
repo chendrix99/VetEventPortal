@@ -14,9 +14,13 @@ This project used the following packages and libraries:
 
 ## In Action
 
+|Main Search|Advanced Search|Special Reports|
+|:-:|:-:|:-:|
+|![main search android](appImages/android/Screenshot_20240417_111139.png)|![advanced search android](appImages/android/Screenshot_20240417_111340.png)|![special report android](appImages/android/Screenshot_20240417_111244.png)|
+
 ![main search android](appImages/android/Screenshot_20240417_111139.png){: style="height:80px"}
-![advanced search android](appImages/android/Screenshot_20240417_111340.png){: style="height:80px"}
-![special report android](appImages/android/Screenshot_20240417_111244.png){: style="height:80px"}
+![advanced search android](appImages/android/Screenshot_20240417_111340.png)
+![special report android](appImages/android/Screenshot_20240417_111244.png)
 
 ![main search ios](appImages/ios/Simulator%20Screenshot%20-%20iPhone%2015%20-%202024-04-17%20at%2011.37.18.png)
 ![advanced search ios](appImages/ios/simulator_screenshot_23F9B9C1-C283-4E68-A018-3AF1BC28E0AA.png)
