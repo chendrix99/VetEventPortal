@@ -15,6 +15,7 @@ This project used the following packages and libraries:
 ## In Action
 
 ![main search android](appImages/android/Screenshot_20240417_111139.png)
+<img src="appImages/android/Screenshot_20240417_111139.png" width="200" height="350" alt="main search android">
 ![advanced search android](appImages/android/Screenshot_20240417_111340.png)
 ![special report android](appImages/android/Screenshot_20240417_111244.png)
 
