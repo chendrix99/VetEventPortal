@@ -12,6 +12,9 @@ This project used the following packages and libraries:
 * Ktor - Http Client
 * SqlDelight - Offline SQL database
 
+Google Play Store - Coming Soon!
+Apple App Store - Coming Soon!
+
 ## In Action
 
 ### Android
