@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 //----------------------------------------------------------------------------------------
@@ -26,7 +27,7 @@ fun TextChip(
     Chip(
         onClick = onClicked,
         leadingIcon = { if (checked) {
-            Icon(Icons.Filled.Check, contentDescription = null)
+            Icon(Icons.Filled.Check, contentDescription = null, tint = Color.White)
         } },
         colors = when (checked) {
             true -> ChipDefaults.chipColors(backgroundColor = MaterialTheme.colors.secondaryVariant, contentColor = MaterialTheme.colors.onSecondary)
@@ -34,6 +35,6 @@ fun TextChip(
         },
         modifier = Modifier.padding(top = 4.dp)
     ) {
-        Text(text)
+        Text(text, color = Color.White)
     }
 }

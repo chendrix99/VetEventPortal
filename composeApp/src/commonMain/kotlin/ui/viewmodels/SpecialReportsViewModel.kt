@@ -94,7 +94,6 @@ data class SpecialReportsState(
 enum class Animal(val value: String) {
     Dog("Dog"),
     Cat("Cat"),
-    Hamster("Hamster"),
     Goat("Goat"),
     GuineaPig("Guinea Pig"),
     Chicken("Chicken"),

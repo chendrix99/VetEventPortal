@@ -11,12 +11,15 @@ import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
+import androidx.compose.material.TextFieldColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
@@ -39,7 +42,7 @@ fun GeneralSearchBar(
         OutlinedTextField(
             value = value,
             onValueChange = onValueChange,
-            label = { Text(text = title) },
+            label = { Text(text = title, color = Color.Black) },
             shape = RoundedCornerShape(16.dp),
             modifier = Modifier.fillMaxWidth(0.8f),
             keyboardOptions = KeyboardOptions(

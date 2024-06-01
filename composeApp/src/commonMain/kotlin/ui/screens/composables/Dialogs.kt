@@ -115,7 +115,10 @@ fun DisclaimerDialog(
 
     Dialog(
         onDismissRequest = onDismiss,
-        properties = DialogProperties()
+        properties = DialogProperties(
+            dismissOnClickOutside = false,
+            dismissOnBackPress = false
+        )
     ) {
         Card {
             Column(

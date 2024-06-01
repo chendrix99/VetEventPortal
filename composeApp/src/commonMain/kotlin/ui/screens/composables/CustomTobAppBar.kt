@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
@@ -30,7 +31,8 @@ fun SimpleTextTopAppBar(
             Text(
                 text = title,
                 fontWeight = FontWeight.Bold,
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                color = Color.White
             )
         }
     }
@@ -48,7 +50,7 @@ fun GoBackTextTopAppBar(
             onClick = onBackClick,
             modifier = Modifier.align(Alignment.CenterVertically)
         ) {
-            Icon(Icons.Filled.ArrowBack, contentDescription = "Back Button")
+            Icon(Icons.Filled.ArrowBack, contentDescription = "Go Back", tint = Color.White)
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -58,7 +60,8 @@ fun GoBackTextTopAppBar(
             Text(
                 text = title,
                 fontWeight = FontWeight.Bold,
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                color = Color.White
             )
         }
     }

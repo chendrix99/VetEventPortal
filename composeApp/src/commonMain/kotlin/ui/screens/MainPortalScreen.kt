@@ -26,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import data.SearchResultData
 import kotlinx.coroutines.launch
@@ -179,26 +180,26 @@ fun MainPortalBottomAppBar(
         BottomNavigationItem(
             selected = false,
             onClick = { navigator.navigate("/saved") },
-            icon = { Icon(Icons.Default.Star, null) },
-            label = { Text(text = "Saved") }
+            icon = { Icon(Icons.Default.Star, "Saved Searches Page", tint = Color.White) },
+            label = { Text(text = "Saved", color = Color.White) }
         )
         BottomNavigationItem(
             selected = false,
             onClick = { navigator.navigate("/advanced") },
-            icon = { Icon(Icons.Default.Build, null) },
-            label = { Text(text = "Advanced") }
+            icon = { Icon(Icons.Default.Build, "Advanced Search Page", tint = Color.White) },
+            label = { Text(text = "Advanced", color = Color.White) }
         )
         BottomNavigationItem(
             selected = false,
             onClick = { navigator.navigate("/special") },
-            icon = { Icon(Icons.Default.Info, null) },
-            label = { Text(text = "Special") }
+            icon = { Icon(Icons.Default.Info, "Special Reports Page", tint = Color.White) },
+            label = { Text(text = "Special", color = Color.White) }
         )
         BottomNavigationItem(
             selected = false,
             onClick = { navigator.navigate("/feature") },
-            icon = { Icon(Icons.Default.Create, null) },
-            label = { Text(text = "Request Feature") }
+            icon = { Icon(Icons.Default.Create, "Request Feature Page", tint = Color.White) },
+            label = { Text(text = "Request Feature", color = Color.White) }
         )
     }
 }
