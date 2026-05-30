@@ -12,9 +12,6 @@ This project used the following packages and libraries:
 * Ktor - Http Client
 * SqlDelight - Offline SQL database
 
-[![Google Play](appImages/android/GetItOnGooglePlay_Badge_Web_color_English.png)](https://play.google.com/store/apps/details?id=org.chendrix.veteventportal)
-Apple App Store - Coming Soon!
-
 ## In Action
 
 ### Android
